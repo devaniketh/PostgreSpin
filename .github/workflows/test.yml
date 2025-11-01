@@ -1,0 +1,13 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install bats
+        run: sudo apt-get install -y bats
+      - name: Run setup
+        run: sudo ./setup.sh
+      - name: Run tests
+        run: bats tests/
